@@ -1,0 +1,81 @@
+{
+  "name": "emacs-transpose",
+  "displayName": "emacs-transpose",
+  "description": "emacs transpose shortcuts",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.83.0"
+  },
+  "categories": [
+    "Other",
+    "Keymaps"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "emacs-transpose.transpose-chars",
+        "title": "Transpose Chars"
+
+      },
+      {
+        "command": "emacs-transpose.transpose-words",
+        "title": "Transpose Words"
+      },{
+        "command": "emacs-transpose.transpose-lines",
+        "title": "Transpose Lines"
+
+      },
+      {
+        "command": "emacs-transpose.transpose-transpose-lines-up",
+        "title": "Transpose Lines Up"
+
+      },
+      {
+        "command": "emacs-transpose.transpose-transpose-lines-down",
+        "title": "Transpose Lines Down"
+      }
+    ],
+    "keybindings":[
+      {
+        "command": "emacs-transpose.transpose-chars",
+        "key": "ctrl+t",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "emacs-transpose.transpose-words",
+        "key": "alt+t",
+        "when": "editorTextFocus"
+      },{
+        "command": "emacs-transpose.transpose-lines",
+        "key": "ctrl+alt+t",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "emacs-transpose.transpose-transpose-lines-up",
+        "key": "ctrl+t+up",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "emacs-transpose.transpose-transpose-lines-down",
+        "key": "ctrl+t+down",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.83.0",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "eslint": "^8.50.0",
+    "typescript": "^5.2.2"
+  }
+}
