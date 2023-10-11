@@ -1,7 +1,14 @@
 {
   "name": "emacs-transpose",
-  "displayName": "emacs-transpose",
-  "description": "emacs transpose shortcuts",
+  "displayName": "Emacs Transpose Shortcuts",
+  "description": "emacs transpose shortcuts for vscode",
+  "publisher": "AymenAbdellaoui",
+  "icon": "./icon.png",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aymen3009/vscode-emacs-transpose.git"
+  },
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.83.0"
