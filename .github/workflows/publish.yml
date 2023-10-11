@@ -19,5 +19,4 @@ jobs:
       - name: package
         run: vsce package
       - name: publish
-        run: vsce publish -p ${{ secrets.VSCODE_MARKETPLACE_TOKEN }}
-        
+        run: vsce publish -p ${{ secrets.MARKETPLACE_PAT }}
