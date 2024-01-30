@@ -24,7 +24,11 @@ const swapWord = (lineText: string, cursorPosition: number) => {
     newTextBeforeCursor +
     " ".repeat(emptySpaceBeforeCursorLength + emptySpaceAfterCursorLength) +
     newTextAfterCursor;
-  return newLineText;
+  const newCursorPosition = Math.max(
+    0,
+    newTextBeforeCursor.length + emptySpaceBeforeCursorLength
+  );
+  return { newLineText, newCursorPosition };
 };
 const getNextWord = (text: string) => {
   const words = text.match(/\b\w+\b/g);
@@ -62,13 +66,26 @@ const replaseLastOccurrence = (
 const transpose_words_handler = (editor: vscode.TextEditor) => {
   const position = editor.selection.active;
   const currentLine = editor.document.lineAt(position.line).text;
-  const newLine = swapWord(currentLine, position.character);
-  editor.edit((edit) => {
-    edit.replace(
-      new vscode.Range(position.line, 0, position.line, currentLine.length),
-      newLine
-    );
-  });
+  const { newLineText, newCursorPosition } = swapWord(
+    currentLine,
+    position.character
+  );
+  editor
+    .edit((edit) => {
+      edit.replace(
+        new vscode.Range(position.line, 0, position.line, currentLine.length),
+        newLineText
+      );
+    })
+    .then(() => {
+      if (vscode.window.activeTextEditor)
+        vscode.window.activeTextEditor.selection = new vscode.Selection(
+          position.line,
+          newCursorPosition,
+          position.line,
+          newCursorPosition
+        );
+    });
 };
 
 export default transpose_words_handler;
