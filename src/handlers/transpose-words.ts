@@ -12,9 +12,11 @@ const swapWord = (lineText: string, cursorPosition: number) => {
     : 0;
   const previousWord = getPreviousWord(textBeforeCursor).trimEnd();
   const nextWord = getNextWord(textAfterCursor).trimStart();
-  const newTextBeforeCursor = textBeforeCursor
-    .trimEnd()
-    .replace(previousWord, nextWord);
+  const newTextBeforeCursor = replaseLastOccurrence(
+    textBeforeCursor.trimEnd(),
+    previousWord,
+    nextWord
+  );
   const newTextAfterCursor = textAfterCursor
     .trimStart()
     .replace(nextWord, previousWord);
@@ -33,13 +35,40 @@ const getPreviousWord = (text: string) => {
   return words && words.length > 0 ? words[words.length - 1] : "";
 };
 
+const isString = (input: unknown): input is string => typeof input === "string";
+
+const replaseLastOccurrence = (
+  input: string,
+  find: string,
+  replaceWith: string
+) => {
+  if (!isString(input) || !isString(find) || !isString(replaceWith)) {
+    // returns input on invalid arguments
+    return input;
+  }
+
+  const lastIndex = input.lastIndexOf(find);
+  if (lastIndex < 0) {
+    return input;
+  }
+
+  return (
+    input.substr(0, lastIndex) +
+    replaceWith +
+    input.substr(lastIndex + find.length)
+  );
+};
+
 const transpose_words_handler = (editor: vscode.TextEditor) => {
   const position = editor.selection.active;
   const currentLine = editor.document.lineAt(position.line).text;
   const newLine = swapWord(currentLine, position.character);
-  editor.edit(edit => {
-    edit.replace(new vscode.Range(position.line, 0, position.line, currentLine.length), newLine);
+  editor.edit((edit) => {
+    edit.replace(
+      new vscode.Range(position.line, 0, position.line, currentLine.length),
+      newLine
+    );
   });
-}
+};
 
 export default transpose_words_handler;
