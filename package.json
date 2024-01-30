@@ -3,13 +3,13 @@
   "displayName": "Emacs Transpose Shortcuts",
   "description": "emacs transpose shortcuts for vscode",
   "publisher": "AymenAbdellaoui",
-  "icon": "./icon.png",
+  "icon": "icon.png",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/aymen3009/vscode-emacs-transpose.git"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.83.0"
   },
@@ -18,33 +18,31 @@
     "Keymaps"
   ],
   "activationEvents": [],
-  "main": "./out/extension.js",
+  "main": "out/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "emacs-transpose.transpose-chars",
         "title": "Transpose Chars"
-
       },
       {
         "command": "emacs-transpose.transpose-words",
         "title": "Transpose Words"
-      },{
+      },
+      {
         "command": "emacs-transpose.transpose-lines",
         "title": "Transpose Lines"
-
       },
       {
         "command": "emacs-transpose.transpose-transpose-lines-up",
         "title": "Transpose Lines Up"
-
       },
       {
         "command": "emacs-transpose.transpose-transpose-lines-down",
         "title": "Transpose Lines Down"
       }
     ],
-    "keybindings":[
+    "keybindings": [
       {
         "command": "emacs-transpose.transpose-chars",
         "key": "ctrl+t",
@@ -54,7 +52,8 @@
         "command": "emacs-transpose.transpose-words",
         "key": "alt+t",
         "when": "editorTextFocus"
-      },{
+      },
+      {
         "command": "emacs-transpose.transpose-lines",
         "key": "ctrl+alt+t",
         "when": "editorTextFocus"
