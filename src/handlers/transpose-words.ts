@@ -56,7 +56,7 @@ const transpose_words_handler = (editor: vscode.TextEditor) => {
       const newCurrentLine = lineText.replace(currentLineFirstWord, lastLineLastWord);
       const newCursorPosition = Math.max(
         0,
-        newCurrentLine.length
+        cursorPosition
       );
      editor.edit((edit) => {
         edit.replace(

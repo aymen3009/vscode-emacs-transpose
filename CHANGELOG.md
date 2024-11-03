@@ -8,6 +8,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Initial release
 
+## [0.0.5] - 2024-11-3
+
+### Fixed
+
+- Fixed bug where the cursor was not correctly positioned after transposing the word. (#2)
+
 ## [0.0.4] - 2024-11-3
 
 ### Fixed
